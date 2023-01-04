@@ -1,3 +1,36 @@
-<button mat-raised-button color="primary" (click)="addProduct()" class="button">
+<br>
+<button mat-raised-button color="primary" (click)="addNewProduct()">
   Add Product
 </button>
+<mat-grid-list cols="6" rowHeight="50px">
+  <mat-grid-tile
+      *ngFor="let tile of mytiles"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [style.background]="tile.color">
+    {{tile.text}}
+  </mat-grid-tile>
+  <ng-container *ngFor="let row of products">
+    <mat-grid-tile>
+      {{ row.productName }}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{ row.stockQuantity }}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{ row.category }}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{ row.procurementDate }}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{ row.ordersPending }}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-fab color="primary" (click)="purchaseProduct()">
+        <mat-icon>library_add</mat-icon>
+      </button>
+    </mat-grid-tile>
+  </ng-container>
+</mat-grid-list>
+

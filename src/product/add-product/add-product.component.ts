@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { CrudHttpService } from 'src/app/crud-http.service';
 import { IProduct } from '../model/product.model';
 import { ProductService } from '../product.service';
 import { DialogData } from '../product/product.component';
@@ -20,7 +21,8 @@ export class AddProductComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AddProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public productService: ProductService) { }
+    public productService: ProductService,
+    public crudHttpService: CrudHttpService) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +33,8 @@ export class AddProductComponent implements OnInit {
       productName: this.popUpForm.value.productName?this.popUpForm.value.productName:'',
       category: this.popUpForm.value.category?this.popUpForm.value.category:'',
       description: this.popUpForm.value.description?this.popUpForm.value.description:'',
-      productId: this.genUniqueId()
+      productId: this.genUniqueId(),
+      createdBy: this.crudHttpService.getUser()?.email
     };
     this.productService.addProduct(prodObject).subscribe(()=>{
       console.log("productObject-> ", prodObject)

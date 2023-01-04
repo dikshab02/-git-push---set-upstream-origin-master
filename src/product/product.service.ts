@@ -19,4 +19,19 @@ export class ProductService {
       let url = environment.apiUrl + 'prod/';
       return this.http.post<IProduct[]>(url, product);
     }
+
+    //api call to show product details in grid
+    getProductInGrid(): Observable<IProduct[]> {
+      let url = environment.apiUrl + 'prod/';
+      return this.http.get<IProduct[]>(url);
+    }
+
+    //api call to update the product details in DB
+    updateProductInDB(product: IProduct): Observable<IProduct[]> {
+      let url = environment.apiUrl + 'prod/';
+      return this.http.put<IProduct[]>(url, product);
+    }
+
+
+
 }

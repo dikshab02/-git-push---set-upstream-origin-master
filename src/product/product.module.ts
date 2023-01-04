@@ -5,18 +5,18 @@ import { ProductRoutingModule } from './product-routing.module';
 import { AddProductComponent } from './add-product/add-product.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  MatDialog,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { PurchaseProductsComponent } from './purchase-products/purchase-products.component';
 
 @NgModule({
   declarations: [
     ProductComponent,
-    AddProductComponent
+    AddProductComponent,
+    PurchaseProductsComponent
   ],
   imports: [
     CommonModule,
@@ -26,9 +26,12 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule,
+    MatIconModule
   ],
   exports: [ProductComponent,
-            AddProductComponent]
+            AddProductComponent,
+            PurchaseProductsComponent]
 })
 export class ProductModule { }

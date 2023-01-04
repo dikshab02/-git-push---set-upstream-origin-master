@@ -3,4 +3,8 @@ export interface IProduct {
   "productName": string;
   "category": string;
   "description": string;
+  "createdBy": string | undefined;
+  "stockQuantity"?: string;
+  "procurementDate"?: Date;
+  "ordersPending"?: number;
 }

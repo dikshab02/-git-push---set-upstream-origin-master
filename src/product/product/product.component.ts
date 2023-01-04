@@ -1,10 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ProductService } from '../product.service';
+import { IProduct } from '../model/product.model';
+import { PurchaseProductsComponent } from '../purchase-products/purchase-products.component';
+
 
 export interface DialogData {
   name: string;
   id: string;
+}
+
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
 }
 
 @Component({
@@ -15,25 +26,57 @@ export interface DialogData {
 export class ProductComponent implements OnInit {
   id: string | undefined;
   name: string | undefined = 'Add Product';
+  products: IProduct[] | undefined;
+  mytiles: Tile[] = [
+    { text: 'Product Name', cols: 1, rows: 1, color: 'lightblue' },
+    { text: 'Quantity in stock', cols: 1, rows: 1, color: 'lightblue' },
+    { text: 'Category', cols: 1, rows: 1, color: 'lightblue' },
+    { text: 'Procurement date', cols: 1, rows: 1, color: 'lightblue' },
+    { text: 'Orders Pending', cols: 1, rows: 1, color: 'lightblue' },
+    { text: 'Actions', cols: 1, rows: 1, color: 'lightblue' },
+  ];
 
-  constructor( public dialog: MatDialog) { }
+  constructor( public dialog: MatDialog,
+              public productService: ProductService) { }
 
   ngOnInit(): void {
+    this.getProductInGrid();
   }
 
-
-    addProduct(): void {
+//add product button
+  addNewProduct(): void {
       const dialogRef = this.dialog.open(AddProductComponent, {
         width: '800px',
         data: { id: this.id, name: this.name},
       });
 
-      dialogRef.afterClosed().subscribe((inv: any) => {
-
-        console.log('The dialog was closed1', inv);
-
+      dialogRef.afterClosed().subscribe(() => {
+        this.getProductInGrid();
       });
 
-
   }
+
+  //procure button
+  purchaseProduct(): void {
+    const dialogRef = this.dialog.open(PurchaseProductsComponent, {
+      width: '300px',
+      data: { id: this.id, name: this.name},
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getProductInGrid();
+    });
+
+}
+
+  getProductInGrid() {
+    const productDetail = this.productService.getProductInGrid();
+    productDetail.subscribe((prod)=>{
+      this.products = prod;
+      console.log("prod-> ", prod)
+    })
+    console.log("products-> ", this.products)
+  }
+
+
 }
