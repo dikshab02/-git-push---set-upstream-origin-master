@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Add Stock Quantity</h1>
 <div mat-dialog-content>
-  <form id="form" [formGroup]="purchaseForm" (ngSubmit)="submitForm1()">
+  <form id="form" [formGroup]="purchaseForm" (ngSubmit)="submitQuantityForm()">
     <mat-form-field appearance="fill">
       <mat-label>Number of Quantity</mat-label>
       <input type="text" matInput  formControlName="quantity"/>

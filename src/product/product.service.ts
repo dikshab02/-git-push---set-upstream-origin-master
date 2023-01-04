@@ -32,6 +32,4 @@ export class ProductService {
       return this.http.put<IProduct[]>(url, product);
     }
 
-
-
 }

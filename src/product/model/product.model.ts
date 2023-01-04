@@ -4,7 +4,7 @@ export interface IProduct {
   "category": string;
   "description": string;
   "createdBy": string | undefined;
-  "stockQuantity"?: string;
+  "stockQuantity"?: number;
   "procurementDate"?: Date;
   "ordersPending"?: number;
 }

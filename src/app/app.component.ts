@@ -32,13 +32,13 @@ export class AppComponent implements OnInit {
         isActive: false,
       },
       {
-        label: 'MyOrders',
+        label: 'My Orders',
         link: '/myOrders',
         index: 2,
         isActive: false,
       },
       {
-        label: 'Orders',
+        label: 'All Orders',
         link: '/orders',
         index: 3,
         isActive: false,

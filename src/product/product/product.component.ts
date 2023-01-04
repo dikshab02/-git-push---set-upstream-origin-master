@@ -57,10 +57,11 @@ export class ProductComponent implements OnInit {
   }
 
   //procure button
-  purchaseProduct(): void {
+  purchaseProduct(row: IProduct): void {
+   // console.log("row-> ", row);
     const dialogRef = this.dialog.open(PurchaseProductsComponent, {
       width: '300px',
-      data: { id: this.id, name: this.name},
+      data: row,
     });
 
     dialogRef.afterClosed().subscribe(() => {
