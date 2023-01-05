@@ -9,7 +9,7 @@ import { UserLoggedInService } from 'src/app/user-logged-in.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  searchText: string = '';
   constructor(private crudHttpService: CrudHttpService,
               private router: Router,
               public userLoggedInService: UserLoggedInService) {
@@ -20,6 +20,11 @@ export class HomeComponent implements OnInit {
     if(!this.crudHttpService.isLoggedin()){
       this.router.navigate(['/login']);
     }
+  }
+
+  onSearchTextEntered(searchValue: string){
+    this.searchText = searchValue;
+    console.log("searchText", this.searchText);
   }
 
 }

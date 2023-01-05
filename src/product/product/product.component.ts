@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProductService } from '../product.service';
 import { IProduct } from '../model/product.model';
 import { PurchaseProductsComponent } from '../purchase-products/purchase-products.component';
+import { CartService } from 'src/core/cart.service';
+
 
 
 export interface DialogData {
@@ -37,7 +39,8 @@ export class ProductComponent implements OnInit {
   ];
 
   constructor( public dialog: MatDialog,
-              public productService: ProductService) { }
+              public productService: ProductService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getProductInGrid();
@@ -77,6 +80,19 @@ export class ProductComponent implements OnInit {
       console.log("prod-> ", prod)
     })
     console.log("products-> ", this.products)
+  }
+
+  addToCart(product:IProduct) {
+    // const dialogRef = this.dialog.open(AddToCartComponent, {
+    //   width: '300px',
+    //   data: '',
+    // });
+
+    // dialogRef.afterClosed().subscribe(() => {
+    //   this.getProductInGrid();
+    // });
+    console.log("product-> ",product)
+    this.cartService.addToCart(product);
   }
 
 

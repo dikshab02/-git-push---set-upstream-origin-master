@@ -11,12 +11,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { PurchaseProductsComponent } from './purchase-products/purchase-products.component';
+import { CoreModule } from 'src/core/core.module';
+import { CartComponent } from './cart/cart.component';
+
 
 @NgModule({
   declarations: [
     ProductComponent,
     AddProductComponent,
-    PurchaseProductsComponent
+    PurchaseProductsComponent,
+    CartComponent,
+
   ],
   imports: [
     CommonModule,
@@ -28,10 +33,13 @@ import { PurchaseProductsComponent } from './purchase-products/purchase-products
     MatInputModule,
     MatButtonModule,
     MatGridListModule,
-    MatIconModule
+    MatIconModule,
+    CoreModule
   ],
   exports: [ProductComponent,
             AddProductComponent,
-            PurchaseProductsComponent]
+            PurchaseProductsComponent,
+            CartComponent
+          ]
 })
 export class ProductModule { }

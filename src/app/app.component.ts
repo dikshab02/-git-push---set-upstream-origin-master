@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { CartService } from 'src/core/cart.service';
 import { CrudHttpService } from './crud-http.service';
 import { UserLoggedInService } from './user-logged-in.service';
 
@@ -16,7 +17,8 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     public crudHttpService: CrudHttpService,
-    public userLoggedInService: UserLoggedInService
+    public userLoggedInService: UserLoggedInService,
+    public cartService: CartService
   ) {
     this.navLinks = [
       {
@@ -46,7 +48,6 @@ export class AppComponent implements OnInit {
     ];
   }
   ngOnInit(): void {
-    //console.log('app ngOninit')
     if (this.crudHttpService.isLoggedin()) {
       this.crudHttpService.storeUserData = this.crudHttpService.getUser();
       console.log(this.crudHttpService.storeUserData?.firstname);
@@ -65,5 +66,9 @@ export class AppComponent implements OnInit {
     this.crudHttpService.logout();
     this.router.navigate(['/login']);
     this.crudHttpService.storeUserData = undefined;
+  }
+
+  cartClick() {
+    this.router.navigate(['cart'])
   }
 }

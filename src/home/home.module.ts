@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { SearchComponent } from './search/search.component'
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
