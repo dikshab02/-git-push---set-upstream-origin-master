@@ -4,16 +4,17 @@
     <mat-card-subtitle>
       <mat-grid-list cols="4" rowHeight="50px" class="grid">
         <mat-grid-tile
-            *ngFor="let tile of myTiles"
-            [colspan]="tile.cols"
-            [rowspan]="tile.rows"
-            [style.background]="tile.color">
-          {{tile.text}}
+          *ngFor="let tile of myTiles"
+          [colspan]="tile.cols"
+          [rowspan]="tile.rows"
+          [style.background]="tile.color"
+        >
+          {{ tile.text }}
         </mat-grid-tile>
         <ng-container *ngFor="let row of gridData; index as i">
           <div *ngIf="row.count > 0">
             <mat-grid-tile>
-              {{ i+1 }}
+              {{ i + 1 }}
             </mat-grid-tile>
             <mat-grid-tile>
               {{ row.product.productName }}
@@ -36,12 +37,21 @@
   </mat-card-header>
 
   <mat-card-actions align="end">
-    <button mat-raised-button color="primary" class="button" (click)="clearCart()">
+    <button
+      mat-raised-button
+      color="primary"
+      class="button"
+      (click)="clearCart()"
+    >
       Clear cart items
     </button>
-    <button mat-raised-button color="primary" class="button" (click)="checkoutProducts()">
+    <button
+      mat-raised-button
+      color="primary"
+      class="button"
+      (click)="checkoutProducts()"
+    >
       Checkout
     </button>
   </mat-card-actions>
 </mat-card>
-

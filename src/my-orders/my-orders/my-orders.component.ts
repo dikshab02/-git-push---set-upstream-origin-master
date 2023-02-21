@@ -4,7 +4,6 @@ import { CartService } from 'src/core/cart.service';
 import { IOrder } from 'src/model/order.model';
 import { IProductByOrder } from 'src/model/productsByOrder.model';
 
-
 @Component({
   selector: 'app-myOrders',
   templateUrl: './my-orders.component.html',

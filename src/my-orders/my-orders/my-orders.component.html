@@ -4,22 +4,28 @@
       <mat-card class="example-card">
         <mat-card-header>
           <mat-card-title>
-            Order:
-            <h2>{{ order.orderNo }}</h2>
+            <h2>
+              Order Id:
+              <p>{{ order.orderNo }}</p>
+            </h2>
           </mat-card-title>
         </mat-card-header>
         <mat-divider></mat-divider>
-        <div class="class-card-content">
-          <mat-card-content
-            *ngFor="let order of order.productList; let i = index"
-          >
-            <b> Product: </b> {{ order.product.productName }}
-            <b> Quantity: </b> {{ order.count }}
-          </mat-card-content>
-          <mat-card-content>
-            Number of Items: {{ order.numberOfProducts }}
-          </mat-card-content>
-        </div>
+        <mat-card-content>
+          <table class="class-card-content">
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+            </tr>
+            <tr *ngFor="let order of order.productList; let i = index">
+              <td>{{ order.product.productName }}</td>
+              <td class="count">{{ order.count }}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+        <mat-card-footer>
+          Number of Items: {{ order.numberOfProducts }}
+        </mat-card-footer>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>

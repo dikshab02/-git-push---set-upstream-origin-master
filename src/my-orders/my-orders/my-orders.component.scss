@@ -1,13 +1,28 @@
 .example-card {
-
-  margin-left: 30px;
+  margin-left: 20px;
   width: 90%;
-  height: 250px;
-  margin-right: 30px;
+  height: 260px;
+  margin-right: 20px;
 }
 mat-grid-tile {
   background: lightblue;
 }
-.class-card-content{
+.class-card-content {
+  width: 100%;
+}
+p {
+  font-size: small;
+  margin-left: 30px;
+  float: right;
+}
+mat-card-footer {
+  float: right;
+  margin-right: 5px;
+  position: relative;
+}
+mat-card-content {
   margin-top: 10px;
+}
+.count {
+  text-align: center;
 }
