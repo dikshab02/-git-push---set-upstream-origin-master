@@ -13,6 +13,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { PurchaseProductsComponent } from './purchase-products/purchase-products.component';
 import { CoreModule } from 'src/core/core.module';
 import { CartComponent } from './cart/cart.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 @NgModule({
@@ -34,7 +37,9 @@ import { CartComponent } from './cart/cart.component';
     MatButtonModule,
     MatGridListModule,
     MatIconModule,
-    CoreModule
+    CoreModule,
+    MatToolbarModule,
+    MatCardModule
   ],
   exports: [ProductComponent,
             AddProductComponent,

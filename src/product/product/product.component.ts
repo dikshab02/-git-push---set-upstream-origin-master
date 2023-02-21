@@ -60,7 +60,7 @@ export class ProductComponent implements OnInit {
   }
 
   //procure button
-  purchaseProduct(row: IProduct): void {
+  addQuantity(row: IProduct): void {
    // console.log("row-> ", row);
     const dialogRef = this.dialog.open(PurchaseProductsComponent, {
       width: '300px',
@@ -93,6 +93,7 @@ export class ProductComponent implements OnInit {
     // });
     console.log("product-> ",product)
     this.cartService.addToCart(product);
+
   }
 
 

@@ -1,1 +1,47 @@
-<p>cart works!</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Place Order</mat-card-title>
+    <mat-card-subtitle>
+      <mat-grid-list cols="4" rowHeight="50px" class="grid">
+        <mat-grid-tile
+            *ngFor="let tile of myTiles"
+            [colspan]="tile.cols"
+            [rowspan]="tile.rows"
+            [style.background]="tile.color">
+          {{tile.text}}
+        </mat-grid-tile>
+        <ng-container *ngFor="let row of gridData; index as i">
+          <div *ngIf="row.count > 0">
+            <mat-grid-tile>
+              {{ i+1 }}
+            </mat-grid-tile>
+            <mat-grid-tile>
+              {{ row.product.productName }}
+            </mat-grid-tile>
+            <mat-grid-tile>
+              {{ row.count }}
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <button mat-button (click)="reduceCount(row)">
+                <mat-icon>remove_from_queue</mat-icon>
+              </button>
+              <button mat-button (click)="addCount(row)">
+                <mat-icon>add_to_queue</mat-icon>
+              </button>
+            </mat-grid-tile>
+          </div>
+        </ng-container>
+      </mat-grid-list>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" class="button" (click)="clearCart()">
+      Clear cart items
+    </button>
+    <button mat-raised-button color="primary" class="button" (click)="checkoutProducts()">
+      Checkout
+    </button>
+  </mat-card-actions>
+</mat-card>
+

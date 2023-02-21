@@ -1,1 +1,26 @@
-<p>my-orders works!</p>
+<div class="class-card">
+  <mat-grid-list cols="4">
+    <mat-grid-tile *ngFor="let order of productsGroupedByOrderNo">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>
+            Order:
+            <h2>{{ order.orderNo }}</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <div class="class-card-content">
+          <mat-card-content
+            *ngFor="let order of order.productList; let i = index"
+          >
+            <b> Product: </b> {{ order.product.productName }}
+            <b> Quantity: </b> {{ order.count }}
+          </mat-card-content>
+          <mat-card-content>
+            Number of Items: {{ order.numberOfProducts }}
+          </mat-card-content>
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

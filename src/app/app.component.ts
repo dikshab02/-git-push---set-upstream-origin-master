@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
   }
 
   cartClick() {
+  if(this.cartService.lstCartItems.length > 0)
     this.router.navigate(['cart'])
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CartService } from 'src/core/cart.service';
 import { environment } from 'src/environments/environment';
 import { IUser } from 'src/model/user.model';
 import { ILogin } from 'src/viewModel/login.model';
@@ -9,9 +10,11 @@ import { ILogin } from 'src/viewModel/login.model';
   providedIn: 'root',
 })
 export class CrudHttpService {
-  private userkey = 'loggedinuser';
+  public userkey = 'loggedinuser';
   public storeUserData: IUser | undefined;
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient,
+    private cartService: CartService) {}
 
   //api call for logged in user
   loginDetails(login: ILogin): Observable<IUser[]> {
@@ -21,13 +24,13 @@ export class CrudHttpService {
 
   // user saved in local storage
   saveToStorage(user: IUser) {
-    console.log('user=', user);
     localStorage.setItem(this.userkey, JSON.stringify(user));
   }
 
   //user removed
   logout() {
     localStorage.removeItem(this.userkey);
+    this.cartService.clearCartItems();
   }
 
   //get user  from local storage
