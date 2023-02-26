@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { CrudHttpService } from 'src/app/crud-http.service';
+import { CrudHttpService } from 'src/core/crud-http.service';
 import { IProduct } from '../model/product.model';
 import { ProductService } from '../product.service';
 import { DialogData } from '../product/product.component';

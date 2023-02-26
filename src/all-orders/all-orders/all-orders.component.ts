@@ -1,29 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudHttpService } from 'src/core/crud-http.service';
 import { CartService } from 'src/core/cart.service';
 import { IOrder } from 'src/model/order.model';
 import { IProductByOrder } from 'src/model/productsByOrder.model';
 
 @Component({
-  selector: 'app-myOrders',
-  templateUrl: './my-orders.component.html',
-  styleUrls: ['./my-orders.component.scss'],
+  selector: 'app-orders',
+  templateUrl: './all-orders.component.html',
+  styleUrls: ['./all-orders.component.scss'],
 })
-export class MyOrdersComponent implements OnInit {
+export class AllOrdersComponent implements OnInit {
   productsGroupedByOrderNo: IProductByOrder[] = [];
-
-  constructor(
-    public cartService: CartService,
-    private crudHttpService: CrudHttpService
-  ) {}
+  constructor(public cartService: CartService) {}
 
   ngOnInit(): void {
-    this.getOrders();
+    this.getAllOrders();
   }
 
-  getOrders() {
+  getAllOrders() {
     this.productsGroupedByOrderNo = [];
-    this.cartService.getOrders().subscribe((orders) => {
+    this.cartService.getAllOrders().subscribe((orders) => {
       orders.forEach((order) => {
         let existingOrderNoObject = this.productsGroupedByOrderNo.find(
           (o) => o.orderNo === order.orderNumber
@@ -35,7 +30,6 @@ export class MyOrdersComponent implements OnInit {
         existingOrderNoObject.productList.push(order);
         existingOrderNoObject.numberOfProducts += 1;
       });
-      console.log('productsGroupedByOrderNo=', this.productsGroupedByOrderNo);
     });
   }
 

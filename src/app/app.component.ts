@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CartService } from 'src/core/cart.service';
-import { CrudHttpService } from './crud-http.service';
-import { UserLoggedInService } from './user-logged-in.service';
+import { CrudHttpService } from '../core/crud-http.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +15,6 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     public crudHttpService: CrudHttpService,
-    public userLoggedInService: UserLoggedInService,
     public cartService: CartService
   ) {
     this.navLinks = [
@@ -25,36 +22,37 @@ export class AppComponent implements OnInit {
         label: 'Home',
         link: '/',
         index: 0,
-        isActive: false,
+        isActive: true,
       },
       {
         label: 'Product',
         link: '/product',
         index: 1,
-        isActive: false,
+        isActive: true,
       },
       {
         label: 'My Orders',
         link: '/myOrders',
         index: 2,
-        isActive: false,
+        isActive: true,
       },
       {
         label: 'All Orders',
-        link: '/orders',
+        link: '/allOrders',
         index: 3,
-        isActive: false,
+        isActive: true,
       },
     ];
   }
   ngOnInit(): void {
-    if (this.crudHttpService.isLoggedin()) {
-      this.crudHttpService.storeUserData = this.crudHttpService.getUser();
-      console.log(this.crudHttpService.storeUserData?.firstname);
-    }
-    this.router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) this.activateRouteNavLink(val.url);
+    this.crudHttpService.logInUpdated.subscribe((res) => {
+      if (this.crudHttpService.isAdmin()) this.navLinks[3].isActive = true;
+      else this.navLinks[3].isActive = false;
     });
+    if (this.crudHttpService.isLoggedin()) {
+      this.crudHttpService.logInUpdated.next(true);
+      this.crudHttpService.storeUserData = this.crudHttpService.getUser();
+    } else this.crudHttpService.logInUpdated.next(false);
   }
 
   //to activate the tab matching with route
@@ -65,11 +63,10 @@ export class AppComponent implements OnInit {
   logout() {
     this.crudHttpService.logout();
     this.router.navigate(['/login']);
-    this.crudHttpService.storeUserData = undefined;
   }
 
   cartClick() {
-  if(this.cartService.lstCartItems.length > 0)
-    this.router.navigate(['cart'])
+    if (this.cartService.lstCartItems.length > 0)
+      this.router.navigate(['cart']);
   }
 }

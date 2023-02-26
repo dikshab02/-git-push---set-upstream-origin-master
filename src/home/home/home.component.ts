@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CrudHttpService } from 'src/app/crud-http.service';
-import { UserLoggedInService } from 'src/app/user-logged-in.service';
+import { CrudHttpService } from 'src/core/crud-http.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +10,7 @@ import { UserLoggedInService } from 'src/app/user-logged-in.service';
 export class HomeComponent implements OnInit {
   searchText: string = '';
   constructor(private crudHttpService: CrudHttpService,
-              private router: Router,
-              public userLoggedInService: UserLoggedInService) {
+              private router: Router) {
 }
 
 

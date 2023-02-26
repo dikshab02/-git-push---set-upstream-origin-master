@@ -8,7 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HomeModule } from '../home/home.module';
 import { ProductModule } from '../product/product.module';
 import { MyOrdersModule } from 'src/my-orders/my-orders.module';
-import { OrdersModule } from '../orders/orders.module';
+import { AllOrdersModule } from '../all-orders/all-orders.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,7 +30,7 @@ import { CoreModule } from 'src/core/core.module';
     HomeModule,
     ProductModule,
     MyOrdersModule,
-    OrdersModule,
+    AllOrdersModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

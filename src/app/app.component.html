@@ -1,22 +1,29 @@
 <mat-toolbar *ngIf="crudHttpService.isLoggedin()" color="primary">
-  <div>
-      <nav mat-tab-nav-bar>
-      <a mat-tab-link
-        *ngFor="let link of navLinks"
+  <nav mat-tab-nav-bar>
+    <ng-container *ngFor="let link of navLinks">
+      <a
+        mat-tab-link
+        *ngIf="link.isActive"
         [routerLink]="link.link"
         class="white-color"
         [ngClass]="{
           'selected-menu': link.isActive
-        }">
+        }"
+      >
         {{ link.label }}
       </a>
-    </nav>
-  </div>
+    </ng-container>
+  </nav>
   <span class="example-spacer"></span>
-  {{crudHttpService.storeUserData?.firstname}} &nbsp;
+  {{ crudHttpService.storeUserData?.firstname }} &nbsp;
   <button mat-mini-fab aria-label="Shopping Cart" (click)="cartClick()">
-    <mat-icon [matBadge]="cartService.lstCartItems.length" matBadgeColor="primary">shopping_cart</mat-icon>
-  </button> &nbsp;
+    <mat-icon
+      [matBadge]="cartService.lstCartItems.length"
+      matBadgeColor="primary"
+      >shopping_cart</mat-icon
+    >
+  </button>
+  &nbsp;
 
   <button mat-mini-fab aria-label="Logout" (click)="logout()">
     <mat-icon>exit_to_app</mat-icon>

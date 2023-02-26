@@ -8,7 +8,7 @@ import { IProduct } from 'src/product/model/product.model';
   providedIn: 'root',
 })
 export class CartService {
-  private userkey: string = 'loggedinuser';
+  private userkey: string = 'loggedInUser';
   private cartKey: string = 'productsListedInCart';
   lstCartItems: IProduct[] = [];
 
@@ -57,8 +57,13 @@ export class CartService {
       let tempObj = JSON.parse(temp)
        userid = tempObj._id;
     }
-    let url = environment.apiUrl + 'cart?userId=' + userid;
+    let url = environment.apiUrl + 'orders?userId=' + userid;
     return this.http.get<IOrder[]>(url)
+  }
+
+  getAllOrders(){
+    let url = environment.apiUrl + 'orders/getAllOrders';
+    return this.http.get<IOrder[]>(url);
   }
 
   getLoggedInUserId(): string {

@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from 'src/home/home/home.component';
-import { LoginComponent } from 'src/login/login/login.component';
-import { UserLoggedInService } from './user-logged-in.service';
+import { CheckIfAdmin } from 'src/core/check-if-admin.route-guard';
+import { CheckIfUserLoggedIn } from '../core/check-if-user-logged-in.route-guard';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('src/home/home.module').then(m => m.HomeModule),
-    canActivate: [UserLoggedInService]
+    canActivate: [CheckIfUserLoggedIn]
   },
   {
     path: 'login',
@@ -17,17 +16,17 @@ const routes: Routes = [
   {
     path: 'product',
     loadChildren: () => import('src/product/product.module').then(m => m.ProductModule),
-    canActivate: [UserLoggedInService]
+    canActivate: [CheckIfUserLoggedIn]
   },
   {
     path: 'myOrders',
     loadChildren: () => import('src/my-orders/my-orders.module').then(m => m.MyOrdersModule),
-    canActivate: [UserLoggedInService]
+    canActivate: [CheckIfUserLoggedIn]
   },
   {
-    path: 'orders',
-    loadChildren: () => import('src/orders/orders.module').then(m => m.OrdersModule),
-    canActivate: [UserLoggedInService]
+    path: 'allOrders',
+    loadChildren: () => import('src/all-orders/all-orders.module').then(m=>m.AllOrdersModule),
+    canActivate: [CheckIfUserLoggedIn, CheckIfAdmin]
   }
 ];
 
