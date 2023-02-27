@@ -6,8 +6,6 @@ import { IProduct } from '../model/product.model';
 import { PurchaseProductsComponent } from '../purchase-products/purchase-products.component';
 import { CartService } from 'src/core/cart.service';
 
-
-
 export interface DialogData {
   name: string;
   id: string;
@@ -23,7 +21,7 @@ export interface Tile {
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
   id: string | undefined;
@@ -38,30 +36,31 @@ export class ProductComponent implements OnInit {
     { text: 'Actions', cols: 1, rows: 1, color: 'lightblue' },
   ];
 
-  constructor( public dialog: MatDialog,
-              public productService: ProductService,
-              private cartService: CartService) { }
+  constructor(
+    public dialog: MatDialog,
+    public productService: ProductService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.getProductInGrid();
   }
 
-//add product button
+  //add product button
   addNewProduct(): void {
-      const dialogRef = this.dialog.open(AddProductComponent, {
-        width: '800px',
-        data: { id: this.id, name: this.name},
-      });
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      width: '800px',
+      data: { id: this.id, name: this.name },
+    });
 
-      dialogRef.afterClosed().subscribe(() => {
-        this.getProductInGrid();
-      });
-
+    dialogRef.afterClosed().subscribe(() => {
+      this.getProductInGrid();
+    });
   }
 
   //procure button
   addQuantity(row: IProduct): void {
-   // console.log("row-> ", row);
+    // console.log("row-> ", row);
     const dialogRef = this.dialog.open(PurchaseProductsComponent, {
       width: '300px',
       data: row,
@@ -70,31 +69,23 @@ export class ProductComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.getProductInGrid();
     });
-
-}
+  }
 
   getProductInGrid() {
     const productDetail = this.productService.getProductInGrid();
-    productDetail.subscribe((prod)=>{
+    productDetail.subscribe((prod) => {
       this.products = prod;
-      console.log("prod-> ", prod)
-    })
-    console.log("products-> ", this.products)
+      console.log('prod-> ', prod);
+    });
+    console.log('products-> ', this.products);
   }
 
-  addToCart(product:IProduct) {
-    // const dialogRef = this.dialog.open(AddToCartComponent, {
-    //   width: '300px',
-    //   data: '',
-    // });
-
-    // dialogRef.afterClosed().subscribe(() => {
-    //   this.getProductInGrid();
-    // });
-    console.log("product-> ",product)
+  addToCart(product: IProduct) {
+    console.log('product-> ', product);
     this.cartService.addToCart(product);
-
   }
 
+  editProductDetails(product: IProduct){
 
+  }
 }

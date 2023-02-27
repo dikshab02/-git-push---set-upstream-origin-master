@@ -1,9 +1,19 @@
 <div class="full-width standard-padding center-search">
   <mat-form-field class="example-form-field">
-    <input type="search" matInput placeholder="Search Product" />
-    <button type="button" matSuffix mat-icon-button class="btn btn-primary">
+    <input
+      type="search"
+      matInput
+      placeholder="Search Product"
+      [(ngModel)]="searchText"
+    />
+    <button
+      type="button"
+      matSuffix
+      mat-icon-button
+      class="btn btn-primary"
+      (click)="searchProduct()"
+    >
       <mat-icon>search</mat-icon>
-      <!-- <app-search (searchTextChanged)="on"></app-search> -->
     </button>
   </mat-form-field>
 </div>
